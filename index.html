@@ -1,17 +1,180 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
-	<title></title>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-	<link href="styles/style.css" rel="stylesheet"/>
-	<!-- font and possible fa -->
+		<title>Tic-tac-toe</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+		<link href="styles/style.css" rel="stylesheet"/>
+		<script src="https://use.fontawesome.com/faecb25be0.js"></script>
+		<link href="https://fonts.googleapis.com/css?family=Indie+Flower|Permanent+Marker|Reenie+Beanie" rel="stylesheet">
 
-	<!-- include favicon here -->
+		<!-- include favicon here -->
+		<link rel="apple-touch-icon" sizes="57x57" href="styles/media/favicon/apple-icon-57x57.png">
+		<link rel="apple-touch-icon" sizes="60x60" href="styles/media/favicon/apple-icon-60x60.png">
+		<link rel="apple-touch-icon" sizes="72x72" href="styles/media/favicon/apple-icon-72x72.png">
+		<link rel="apple-touch-icon" sizes="76x76" href="styles/media/favicon/apple-icon-76x76.png">
+		<link rel="apple-touch-icon" sizes="114x114" href="styles/media/favicon/apple-icon-114x114.png">
+		<link rel="apple-touch-icon" sizes="120x120" href="styles/media/favicon/apple-icon-120x120.png">
+		<link rel="apple-touch-icon" sizes="144x144" href="styles/media/favicon/apple-icon-144x144.png">
+		<link rel="apple-touch-icon" sizes="152x152" href="styles/media/favicon/apple-icon-152x152.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="styles/media/favicon/apple-icon-180x180.png">
+		<link rel="icon" type="image/png" sizes="192x192"  href="styles/media/favicon/android-icon-192x192.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="styles/media/favicon/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="96x96" href="styles/media/favicon/favicon-96x96.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="styles/media/favicon/favicon-16x16.png">
+		<link rel="manifest" href="styles/media/favicon/manifest.json">
+		<meta name="msapplication-TileColor" content="#ffffff">
+		<meta name="msapplication-TileImage" content="styles/media/favicon/ms-icon-144x144.png">
+		<meta name="theme-color" content="#ffffff">
 	</head>
 	<body>
-		<script src="scripts/script.js"></script>
+		<!-- Player Number modal -->
+		<!--
+		<div class="modal fade" id="player-num-modal" role="dialog">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h4 class="modal-title">Start a New Game</h4>
+					</div>
+					<div class="modal-body">
+						<div class="tab-content settings">
+							<h3 class="settings-text">How many players?</h3>
+							<a href="#" class="settings-button player-num" id="onePlayer">1 Player</a>
+							<a href="#" class="settings-button player-num" id="twoPlayer">2 Player</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		-->
+
+		<!-- Marker modal -->
+		<div class="modal fade" id="marker-modal" role="dialog">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h4 class="modal-title">Start a New Game</h4>
+					</div>
+
+					<div class="modal-body">
+						<div class="tab-content settings">
+							<h3 class="settings-text">Marker</h3>
+							<a href="#" class="settings-button marker" id="X">X</a>
+							<a href="#" class="settings-button marker" id="O">O</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- AI Modal -->
+		<div class="modal fade" id="AI-modal" role="dialog">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h4 class="modal-title">Start a New Game</h4>
+					</div>
+
+					<div class="modal-body">
+						<div class="tab-content settings">
+							<h3 class="settings-text">Difficulty</h3>
+							<a href="#" class="settings-button difficulty" id="blind">Blind</a>
+							<a href="#" class="settings-button difficulty" id="novice">Novice</a>
+							<a href="#" class="settings-button difficulty" id="master">Master</a>
+						</div>
+					</div>
+
+
+				</div>
+			</div>
+		</div>
+
+
+
+		<div class="container-fluid">
+			<div class="row paper-container">
+				<div class="col-md-5 col-md-offset-1 paper">
+					<div class="">
+						<div class="row">
+							<span class="left-status">Mark Paolo B. Libunao</span>
+							<span class="right-status match-up"></span>
+						</div>
+						<div class="row">
+							<span class="left-status">10909257</span>
+							<span class="right-status turnIndicator"></span>
+							
+						</div>
+						<div class="row">
+							<span class="left-status">BS Information Systems</span>
+							<a href="#" class="right-status">New Game</a>
+						</div>
+					</div>
+					<div class="row header-row">
+						<h1 id="header">Tic Tac Toe</h1>
+					</div>
+					
+						<div class="board-container">
+
+
+							<div class="row board-row">
+								<div class="cell col-xs-4" id="cell-0"></div>
+								<div class="cell col-xs-4" id="cell-1"></div>
+								<div class="cell col-xs-4" id="cell-2"></div>
+							</div>
+							<div class="row board-row">
+								<div class="cell col-xs-4" id="cell-3"></div>
+								<div class="cell col-xs-4" id="cell-4"></div>
+								<div class="cell col-xs-4" id="cell-5"></div>
+							</div>
+							<div class="row board-row">
+								<div class="cell col-xs-4" id="cell-6"></div>
+								<div class="cell col-xs-4" id="cell-7"></div>
+								<div class="cell col-xs-4" id="cell-8"></div>
+							</div>
+						</div>
+					
+
+				</div>
+
+
+				<div class="col-md-6">
+					<div class="row post-it-section">
+						<div class="post-it yellow-post-it ">
+							<h1 class="turnIndicator"></h1>
+							<h3 class="match-up"></h3>
+							<!--
+							<div class="row">
+								<span class="scoreboard" id="playerOneScore">0</span>
+								<span class="scoreboard">-</span>
+								<span class="scoreboard" id="playerTwoScore">0</span>
+							</div>
+							-->
+						</div>
+
+
+						<div class="post-it green-post-it">
+						</div>
+					
+					
+						<div class="post-it purple-post-it">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+
+
+		<script src="scripts/control.js"></script>
+		<script src="scripts/ui.js"></script>
+		<script src="scripts/ai.js"></script>
+		<script src="scripts/game.js"></script>
 	</body>
 </html>

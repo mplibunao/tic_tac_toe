@@ -1,6 +1,5 @@
 
-
-//$(document).ready(function(){
+/*		game.js		*/
 
 /*
 	Object State represents a state in the game
@@ -63,28 +62,34 @@ var State = {
 			@returns [Boolean]: true if it's terminal, false otherwise
 		*/
 		this.isTerminal = function(){
-			var b = this.board;
-
+			var B = this.board;
+			var moveOfTheGame = [];
 			//check rows
 			for (var i=0; i<=6; i+=3){
-				if (b[i] !== "E" && b[i] === b[i+1] && b[i+1] === b[i+2]){
-					this.result = b[i] + "-won"; //update the state result
+				if (B[i] !== "E" && B[i] === B[i+1] && B[i+1] === B[i+2]){
+					moveOfTheGame = [i, i+1, i+2];
+					ui.pulsate(moveOfTheGame);
+					this.result = B[i]; //"-won"; update the state result
 					return true;
 				}
 			}
 
 			//check columns
 			for (var i=0; i<=2; i++){
-				if(b[i] !== "E" && b[i] === b[i+3] && b[i+3] === b[i+6]){
-					this.result = b[i] + "-won"; //update the state result
+				if(B[i] !== "E" && B[i] === B[i+3] && B[i+3] === B[i+6]){
+					moveOfTheGame = [i, i+3, i+6];
+					ui.pulsate(moveOfTheGame);
+					this.result = B[i]; //update the state result
 					return true;
 				}
 			}
 
 			//check diagonals
 			for (var i=0, j=4; i<=2; i+=2, j-=2){
-				if(b[i] !== "E" && b[i] == b[i+j] && b[i+j] === b[i+2*j] ){
-					this.result = b[i] + "-won";
+				if(B[i] !== "E" && B[i] == B[i+j] && B[i+j] === B[i+2*j] ){
+					moveOfTheGame = [i, i+j, i+2*j];
+					ui.pulsate(moveOfTheGame);
+					this.result = B[i];
 					return true;
 				}
 			}
@@ -93,6 +98,10 @@ var State = {
 			if (available.length == 0){
 				// the game is draw
 				this.result = "draw";
+				for (let i = 0; i<10; i++){
+					moveOfTheGame.push(i);
+				}
+				ui.pulsate(moveOfTheGame);
 				return true;
 			}
 			else {
@@ -121,8 +130,19 @@ var Game ={
 	    this.currentState.board = ["E", "E", "E",
 	                               "E", "E", "E",
 	                               "E", "E", "E"];
+	    
+	    function getRandomIntInclusive(min, max) {
+  			min = Math.ceil(min);
+			max = Math.floor(max);
+			return Math.floor(Math.random() * (max - min + 1)) + min;
+		}
 
-	    this.currentState.turn = "X"; //X plays first
+		// randomize who goes first
+	    if (getRandomIntInclusive(1,10) >= 6){
+	    	this.currentState.turn = "X";
+	    } else{
+	    	this.currentState.turn = "O";
+	    }
 
 	    /*
 	     * initialize game status to beginning
@@ -138,10 +158,10 @@ var Game ={
 	        if(_state.isTerminal()) {
 	            this.status = "ended";
 
-	            if(_state.result === "X-won")
+	            if(_state.result === this.p1)
 	                //X won
 	                ui.switchViewTo("won");				//HEY I DON"T HAVE THIS
-	            else if(_state.result === "O-won")
+	            else if(_state.result === this.p2)
 	                //X lost
 	                ui.switchViewTo("lost");
 	            else
@@ -151,14 +171,14 @@ var Game ={
 	        else {
 	            //the game is still running
 
-	            if(this.currentState.turn === "X") {
-	                ui.switchViewTo("human");
+	            if(this.currentState.turn === this.p1) {
+	                ui.switchViewTo("playerOne");
 	            }
 	            else {
-	                ui.switchViewTo("robot");
+	                ui.switchViewTo("playerTwo");
 
 	                //notify the AI player its turn has come up
-	                this.ai.notify("O");
+	                this.ai.notify(this.p2);
 	            }
 	        }
 	    };
@@ -180,23 +200,29 @@ var Game ={
 	 * @param _state [State]: the state in which the score is calculated
 	 * @return [Number]: the score calculated for the human player
 	 */
-	 score : function(){
-	 	if(_state.result === "X-won"){
+	 score : function(_state){
+	 	if(_state.result === this.p1){
         	// the x player won
-        	return 10 - _state.oMovesCount;
+        	return 10 - _state.aiMovesCount;
 	    }
-	    else if(_state.result === "O-won") {
+	    else if(_state.result === this.p2) {
 	        //the x player lost
-	        return - 10 + _state.oMovesCount;
+	        return - 10 + _state.aiMovesCount;
 	    }
 	    else {
 	        //it's a draw
 	        return 0;
 	    }
 
+	},
+
+	/*
+		Initialize the players
+	*/
+	initMarkers : function initMarkers(p1Marker, p2Marker){
+		this.p1 = p1Marker;
+		this.p2 = p2Marker;
 	}
 };
 
-
-
-//});
+/*		end game.js		*/

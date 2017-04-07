@@ -41,6 +41,3 @@ Definitely although this seemed to be a copy paste project, it opened up a lot o
 
 Anyway I still have to create my own AI and customize the AI and Game structure to my own liking so it's not yet done.
 
-
-lot of stack debugging experience
-stackover flow due to careless transitioning of functions from oo class style to prototypal inheritance
