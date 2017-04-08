@@ -250,10 +250,10 @@ var AI = {
 	            var next = action.applyTo(game.currentState); 
 
 	            action.minimaxVal = minimaxValue(next); //calculate and set the action's minmax value
-
+	            console.log(action.minimaxVal);
 	            return action;
 	        });
-	        console.log(availableActions);
+	        //console.log(availableActions);
 	        //sort the enumerated actions list by score
 	        if(turn === globals.game.p1)
 	        //X maximizes --> sort the actions in a descending manner to have the action with maximum minimax at first
