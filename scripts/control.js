@@ -11,7 +11,7 @@ var globals = {};
     Event Listener for choosing marker (onclick .marker)
     Sets playerOne and playerTwo properties of globals object
 */
-$('.marker').on('click', function(){
+$('.marker-buttons').on('click', function(){
     var marker = $(this).attr('id');
     if (marker === "X"){
         globals.playerOne = "X";
@@ -35,6 +35,7 @@ $('.difficulty').on('click', function(){
     globals.difficulty = difficultyLevel;
 
     ui.hideAIModal();
+    ui.loadingScreen();
     //add timeout to prevent modal hide from lagging
     setTimeout(startGame, 500);
 });
@@ -48,7 +49,7 @@ $('.difficulty').on('click', function(){
 
 var startGame = function start(){
     var selectedDifficulty = globals.difficulty;
-    console.log(selectedDifficulty);
+    //console.log(selectedDifficulty);
     var playerOne = globals.playerOne;
     var playerTwo = globals.playerTwo;
     
@@ -67,6 +68,7 @@ var startGame = function start(){
 
     aiPlayer.plays(globals.game);
     ui.setPlayers();
+
     globals.game.start();
 
 }

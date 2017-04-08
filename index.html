@@ -65,8 +65,8 @@
 					<div class="modal-body">
 						<div class="tab-content settings">
 							<h3 class="settings-text">Marker</h3>
-							<a href="#" class="settings-button marker" id="X">X</a>
-							<a href="#" class="settings-button marker" id="O">O</a>
+							<a href="#" class="settings-button marker-buttons" id="X">X</a>
+							<a href="#" class="settings-button marker-buttons" id="O">O</a>
 						</div>
 					</div>
 				</div>
@@ -99,8 +99,8 @@
 
 		<div class="container-fluid">
 			<div class="row paper-container">
-				<div class="col-md-5 col-md-offset-1 paper">
-					<div class="">
+				<div class="col-md-5 col-md-offset-3 paper">
+					<div class="font-indie-flower">
 						<div class="row">
 							<span class="left-status">Mark Paolo B. Libunao</span>
 							<span class="right-status match-up"></span>
@@ -112,7 +112,7 @@
 						</div>
 						<div class="row">
 							<span class="left-status">BS Information Systems</span>
-							<a href="#" class="right-status">New Game</a>
+							<a href="#" class="right-status" onclick="location.reload()">Restart Game</a>
 						</div>
 					</div>
 					<div class="row header-row">
@@ -120,8 +120,6 @@
 					</div>
 					
 						<div class="board-container">
-
-
 							<div class="row board-row">
 								<div class="cell col-xs-4" id="cell-0"></div>
 								<div class="cell col-xs-4" id="cell-1"></div>
@@ -138,23 +136,23 @@
 								<div class="cell col-xs-4" id="cell-8"></div>
 							</div>
 						</div>
-					
+						
 
 				</div>
 
-
+				<!--
 				<div class="col-md-6">
 					<div class="row post-it-section">
 						<div class="post-it yellow-post-it ">
 							<h1 class="turnIndicator"></h1>
 							<h3 class="match-up"></h3>
-							<!--
+							
 							<div class="row">
 								<span class="scoreboard" id="playerOneScore">0</span>
 								<span class="scoreboard">-</span>
 								<span class="scoreboard" id="playerTwoScore">0</span>
 							</div>
-							-->
+							
 						</div>
 
 
@@ -166,6 +164,7 @@
 						</div>
 					</div>
 				</div>
+				-->
 			</div>
 		</div>
 

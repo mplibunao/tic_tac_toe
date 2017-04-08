@@ -68,10 +68,10 @@ var AIAction = {
 		 * @return [Number]: -1, 1, or 0
 		 */
 		DESCENDING : function(firstAction, secondAction) {
-			console.log('first action');
-			console.log(firstAction);
-			console.log('second action')
-			console.log(secondAction);
+			//console.log('first action');
+			//console.log(firstAction);
+			//console.log('second action')
+			//console.log(secondAction);
 		    if(firstAction.minimaxVal > secondAction.minimaxVal)
 		        return -1; //indicates that firstAction goes before secondAction
 		    else if(firstAction.minimaxVal < secondAction.minimaxVal)
@@ -253,7 +253,7 @@ var AI = {
 
 	            return action;
 	        });
-
+	        console.log(availableActions);
 	        //sort the enumerated actions list by score
 	        if(turn === globals.game.p1)
 	        //X maximizes --> sort the actions in a descending manner to have the action with maximum minimax at first

@@ -67,8 +67,6 @@ var State = {
 			//check rows
 			for (var i=0; i<=6; i+=3){
 				if (B[i] !== "E" && B[i] === B[i+1] && B[i+1] === B[i+2]){
-					moveOfTheGame = [i, i+1, i+2];
-					ui.pulsate(moveOfTheGame);
 					this.result = B[i]; //"-won"; update the state result
 					return true;
 				}
@@ -77,8 +75,6 @@ var State = {
 			//check columns
 			for (var i=0; i<=2; i++){
 				if(B[i] !== "E" && B[i] === B[i+3] && B[i+3] === B[i+6]){
-					moveOfTheGame = [i, i+3, i+6];
-					ui.pulsate(moveOfTheGame);
 					this.result = B[i]; //update the state result
 					return true;
 				}
@@ -87,8 +83,6 @@ var State = {
 			//check diagonals
 			for (var i=0, j=4; i<=2; i+=2, j-=2){
 				if(B[i] !== "E" && B[i] == B[i+j] && B[i+j] === B[i+2*j] ){
-					moveOfTheGame = [i, i+j, i+2*j];
-					ui.pulsate(moveOfTheGame);
 					this.result = B[i];
 					return true;
 				}
@@ -98,10 +92,7 @@ var State = {
 			if (available.length == 0){
 				// the game is draw
 				this.result = "draw";
-				for (let i = 0; i<10; i++){
-					moveOfTheGame.push(i);
-				}
-				ui.pulsate(moveOfTheGame);
+				
 				return true;
 			}
 			else {
@@ -158,15 +149,22 @@ var Game ={
 	        if(_state.isTerminal()) {
 	            this.status = "ended";
 
-	            if(_state.result === this.p1)
-	                //X won
-	                ui.switchViewTo("won");				//HEY I DON"T HAVE THIS
-	            else if(_state.result === this.p2)
-	                //X lost
-	                ui.switchViewTo("lost");
+	            if(_state.result === this.p1){
+	            	//player 1 won
+	            	//ui.checkWinningMove(_state, this.p1);
+	                ui.switchViewTo("won", _state, this.p1);	
+	            }
+	            else if(_state.result === this.p2){
+	            	//player 1 lost
+	            	//ui.checkWinningMove(_state, this.p2);
+	                ui.switchViewTo("lost", _state, this.p2);
+	            }
 	            else
-	                //it's a draw
-	                ui.switchViewTo("draw");
+	            	//it's a draw
+	            	//ui.checkWinningMove(_state, 'tie');
+	                ui.switchViewTo("draw", _state, 'tie');
+	            
+	                
 	        }
 	        else {
 	            //the game is still running
@@ -201,11 +199,11 @@ var Game ={
 	 * @return [Number]: the score calculated for the human player
 	 */
 	 score : function(_state){
-	 	if(_state.result === this.p1){
+	 	if(_state.result === globals.game.p1){
         	// the x player won
         	return 10 - _state.aiMovesCount;
 	    }
-	    else if(_state.result === this.p2) {
+	    else if(_state.result === globals.game.p2) {
 	        //the x player lost
 	        return - 10 + _state.aiMovesCount;
 	    }
