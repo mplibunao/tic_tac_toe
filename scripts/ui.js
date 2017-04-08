@@ -1,4 +1,4 @@
-
+"use strict"
 
 
 // ui object will contain all the methods for ui manipulation

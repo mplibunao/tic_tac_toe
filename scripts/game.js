@@ -1,4 +1,4 @@
-
+"use strict"
 /*		game.js		*/
 
 /*

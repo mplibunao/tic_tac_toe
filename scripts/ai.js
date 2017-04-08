@@ -1,3 +1,5 @@
+"use strict"
+
 /*			ai.js			*/
 
 
@@ -250,7 +252,7 @@ var AI = {
 	            var next = action.applyTo(game.currentState); 
 
 	            action.minimaxVal = minimaxValue(next); //calculate and set the action's minmax value
-	            console.log(action.minimaxVal);
+	            //console.log(action.minimaxVal);
 	            return action;
 	        });
 	        //console.log(availableActions);
