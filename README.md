@@ -41,3 +41,10 @@ Definitely although this seemed to be a copy paste project, it opened up a lot o
 
 Anyway I still have to create my own AI and customize the AI and Game structure to my own liking so it's not yet done.
 
+--
+
+For the UI I decided to scrap some of the "unecessary" add-ons I added during my last attempt. Some of them would be cool, like having a scoreboard but I'm pressed for time since I wanna complete claim the Front End Certification so I just went to for the bare minimum (well not too bare minimum)
+
+I also remove the sticky note ui I initially added to the project at the end of the project. Since for mobile you have to scroll way down anyway to see the sticky note which just displays the same information that I already display in the main ui (because it would be weird if the user had to scroll way down to see who's turn it is) so I just removed it to make the experience the same for desktop and mobile.
+
+Plus it's a tic-tac-toe game anyway so it makes more sense that people might come to the site on mobile when they're bored rather than when they're on their laptops
